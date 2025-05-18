@@ -55,6 +55,8 @@ endif
 
 set number
 set relativenumber
+set nocompatible
+filetype plugin on
 syntax on
 
 set tabstop=4       " ширина таба в пробелах
@@ -87,6 +89,8 @@ Plug 'https://github.com/ap/vim-css-color'
 Plug 'https://github.com/ryanoasis/vim-devicons'
 Plug 'https://github.com/preservim/tagbar'
 Plug 'https://github.com/ryanoasis/vim-devicons'
+Plug 'https://github.com/vimwiki/vimwiki'
+Plug 'dhruvasagar/vim-table-mode'
 Plug 'wadackel/vim-dogrun'
 Plug 'nikolvs/vim-sunbather'
 Plug 'https://github.com/nordtheme/vim'
@@ -119,10 +123,20 @@ let g:airline_right_alt_sep = ''
 
 highlight LineNr ctermfg=Magenta
 
+set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
+"Если вы используете обычную qwerty, то поменяте mac на win
+set keymap=russian-jcukenmac
+"Язык ввода при старте Вима - Английский
+set iminsert=0
+"Аналогично настраивается режим поиска
+set imsearch=0
+
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-t> :TagbarToggle<CR>
 nnoremap <C-t> :Tagbar<CR>
+nnoremap <Leader>bn :bnext<CR>
+nnoremap <Leader>n :new<CR>
 
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
