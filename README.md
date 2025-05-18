@@ -1,3 +1,3 @@
-git clone git@github.com:Nzoth665/Vimrc.git\n
-cd Vimrc\n
+git clone git@github.com:Nzoth665/Vimrc.git
+cd Vimrc
 bash install.sh
