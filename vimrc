@@ -1,58 +1,33 @@
-
-" An example for a vimrc file.
-"
-" Maintainer:	The Vim Project <https://github.com/vim/vim>
-" Last Change:	2023 Aug 10
-" Former Maintainer:	Bram Moolenaar <Bram@vim.org>
-"
-" To use it, copy it to
-"	       for Unix:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"	 for MS-Windows:  $VIM\_vimrc
-"	      for Haiku:  ~/config/settings/vim/vimrc
-"	    for OpenVMS:  sys$login:.vimrc
-
-" When started as "evim", evim.vim will already have done these settings, bail
-" out.
 if v:progname =~? "evim"
   finish
 endif
 
-" Get the defaults that most users want.
 source $VIMRUNTIME/defaults.vim
 
 if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
+  set nobackup
 else
-  set backup		" keep a backup file (restore to previous version)
+  set backup
   if has('persistent_undo')
-    set undofile	" keep an undo file (undo changes after closing)
+    set undofile
   endif
 endif
 
 if &t_Co > 2 || has("gui_running")
-  " Switch on highlighting the last used search pattern.
   set hlsearch
 endif
 
-" Put these in an autocmd group, so that we can delete them easily.
 augroup vimrcEx
   au!
 
-  " For all text files set 'textwidth' to 78 characters.
   autocmd FileType text setlocal textwidth=78
 augroup END
 
-" Add optional packages.
-"
-" The matchit plugin makes the % command work better, but it is not backwards
-" compatible.
-" The ! means the package won't be loaded right away but when plugins are
-" loaded during initialization.
 if has('syntax') && has('eval')
   packadd! matchit
 endif
 
+" Настройка через set
 set number
 set relativenumber
 set nocompatible
@@ -68,7 +43,7 @@ set smarttab        " умная обработка табов
 set ignorecase      " игнорировать регистр при поиске
 set smartcase       " если есть символы в верхнем регистре - учитывать регистр
 set incsearch       " инкрементальный поиск
-set hlsearch        " подсвечивать найденное
+" set hlsearch        " подсвечивать найденное
 
 " Перенос строк
 set wrap            " переносить длинные строки
@@ -92,23 +67,27 @@ Plug 'https://github.com/ryanoasis/vim-devicons'
 Plug 'https://github.com/vimwiki/vimwiki'
 Plug 'dhruvasagar/vim-table-mode'
 Plug 'wadackel/vim-dogrun'
+Plug 'EdenEast/nightfox.nvim'
 Plug 'nikolvs/vim-sunbather'
 Plug 'https://github.com/nordtheme/vim'
 Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'embark-theme/vim', { 'as': 'embark', 'branch': 'main' }
 Plug 'https://github.com/joshdick/onedark.vim'
+Plug 'sheerun/vim-polyglot'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
+" #colorscheme
 " colorscheme embark
-colorscheme dogrun
+" colorscheme dogrun
 " colorscheme sunbather
 " colorscheme nord
 " colorscheme onedark
+colorscheme nightfox
 
-" Включение airline
+" Настройка airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
@@ -123,6 +102,7 @@ let g:airline_right_alt_sep = ''
 
 highlight LineNr ctermfg=Magenta
 
+" Настройка клавы
 set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 "Если вы используете обычную qwerty, то поменяте mac на win
 set keymap=russian-jcukenmac
@@ -131,6 +111,11 @@ set iminsert=0
 "Аналогично настраивается режим поиска
 set imsearch=0
 
+" set foldmethod=syntax
+" set foldlevel=99
+" autocmd FileType python setlocal foldmethod=indent
+
+" nnoremap
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
 nnoremap <C-t> :TagbarToggle<CR>
@@ -138,6 +123,7 @@ nnoremap <C-t> :Tagbar<CR>
 nnoremap <Leader>bn :bnext<CR>
 nnoremap <Leader>n :new<CR>
 
+" inoremap
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
